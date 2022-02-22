@@ -21,7 +21,7 @@ import { ConnectApi, CrudApi} from "../api/ConnectApi";
 import { AuthContext } from "../AuthContext";
 import TableTitle from "./TableTitle";
 import DoneTasks from "./DoneTasks";
-import axios from "axios";
+// import axios from "axios";
 
 const Main = () => {
   const { loading, currentUser } = useContext(AuthContext);
@@ -34,13 +34,14 @@ const Main = () => {
   const priorityList = ["high priority", "medium priority", "low priority", "no priority"];
   const sortTitles = ["title/asc", "title/desc", "user/asc", "user/desc", "priority/asc", "priority/desc", "due_date/asc", "due_date/desc"];
 
-  const GROUP_API_URL = "http://127.0.0.1:8000/groups/";
-  const USER_API_URL = "http://127.0.0.1:8000/usernames/";
-  const TASK_API_URL = "http://127.0.0.1:8000/tasks/";
+  const GROUP_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/groups/";
+  const USER_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/usernames/";
+  const TASK_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/tasks/";
 
   let groupsData = ConnectApi(GROUP_API_URL, changeHandler);
   let tasksData = ConnectApi(TASK_API_URL, changeHandler);
   let usersData = ConnectApi(USER_API_URL);
+  // console.log(usersData)
 
 //   const Please = async (group) => {
 //     // useEffect(() => {
@@ -168,7 +169,7 @@ const Main = () => {
     <Box sx={{ width: "100%", minHeight: "93.4vh", position: "absolute", display: "flex", flexDirection: "column", alignItems: "start", backgroundImage: 'url("https://picsum.photos/1600/900")', backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
       {currentUser ? (
         loading ? (
-          <Stack sx={{ display: "flex", justifyContent: "center", mt: "50px" }} direction="row">
+          <Stack sx={{ display: "flex", justifyContent: "center", mt: "50px", width: "100%" }} direction="row">
             <CircularProgress color="success" size="7rem" />
           </Stack>
         ) : (
@@ -240,10 +241,10 @@ const Main = () => {
                                 </TableCell>
                                 <TableCell align="left" sx={{ m: 0, p: 1}}>
                                   <FormControl variant="standard" sx={{ m: 1 , width: "90px" }} size="small">
-                                    <Select defaultValue={task?.user} name="user" onChange={(e) => SetCatcherHandler(e, task.id)}>
+                                    <Select value={task?.user ?? ""} name="user" onChange={(e) => SetCatcherHandler(e, task.id)}>
                                       {usersData[0].data?.map((user) => {
                                         return (
-                                          <MenuItem key={task.id} value={user.username}>
+                                          <MenuItem key={user?.id} value={user.username}>
                                             {user.username}
                                           </MenuItem>
                                         );
