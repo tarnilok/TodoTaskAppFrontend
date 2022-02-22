@@ -7,15 +7,15 @@
   </h3>
 </div>
 
-## FrontEnd ⇒ React.js
-## BackEnd ⇒ Django
+## <div align="center">FrontEnd ⇒ React.js</div>
+## <div align="center">BackEnd ⇒ Django</div>
 
-## <u>Scenario</u>
-### A TODO task application that has the basic task management features, such as create/update/delete tasks along with their groups and assigning the task to one of the system users. The user can create unlimited tasks & task groups as well as move the task between the groups without having to refresh the page to apply the changes.
+## <div align="center"><u>Scenario</u></div>
+### <code>A TODO task application that has the basic task management features, such as create/update/delete tasks along with their groups and assigning the task to one of the system users. The user can create unlimited tasks & task groups as well as move the task between the groups without having to refresh the page to apply the changes.</code>
 
-<pre>
+<code>
   <h4>Tasks and groups can only be seen by system users. To be a system user it is necessary to register.</h4>
   <h4>Users can mark the task as a complete task (any completed task moves into the completed tasks group list automatically if the group exists, if not the group will be automatically generated and it will contain the tasks marked as completed inside of it)</h4>
   <h4>Group scroll functionality after the tasks reach a certain number.</h4>
   <h4>Sorting in-group can be made in client-side by system users.</h4>
-  <h4><u>Note:</u> Issue not resolved yet ⇒ As a result of one system user changing the sort criteria, this also changes the tables of all other users.</h4></pre>
+  <h4><u>Note:</u> Issue not resolved yet ⇒ As a result of one system user changing the sort criteria, this also changes the tables of all other users.</h4></code>
