@@ -156,6 +156,7 @@ const Main = () => {
   const HandleAddGroup = (e) => {
     e.preventDefault();
     const new_group_list = { name: e.target.new_group.value };
+    e.target.new_group.value = ""
     try {
       CrudApi(GROUP_API_URL, new_group_list, currentUser.data.key, "post", catcher);
       successToastify("New group list added successfully");
