@@ -1,9 +1,6 @@
 {
   "name": "todotaskapp",
   "version": "0.1.0",
-  "engines": {
-    "node": "16.13.1"
-  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^5.0.0-beta.5",
