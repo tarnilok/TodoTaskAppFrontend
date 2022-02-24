@@ -8,7 +8,7 @@ import { successToastify, errorToastify } from "../toastify";
 
 const Account = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
-  const API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/users/auth/logout";
+  const API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/users/auth/logout/";
 
   const LogOut = async () => {
     try {

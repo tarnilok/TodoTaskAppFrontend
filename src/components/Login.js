@@ -16,7 +16,7 @@ const initialValues = {
 };
 const Login = () => {
   const {setCurrentUser} = useContext(AuthContext)
-  const API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/users/auth/login";
+  const API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/users/auth/login/";
 
   const SignIn = async (...args) => {
     try {

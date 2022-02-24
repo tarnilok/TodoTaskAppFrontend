@@ -34,9 +34,9 @@ const Main = () => {
   const priorityList = ["high priority", "medium priority", "low priority", "no priority"];
   const sortTitles = ["title/asc", "title/desc", "user/asc", "user/desc", "priority/asc", "priority/desc", "due_date/asc", "due_date/desc"];
 
-  const GROUP_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/groups";
-  const USER_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/usernames";
-  const TASK_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/tasks";
+  const GROUP_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/groups/";
+  const USER_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/usernames/";
+  const TASK_API_URL = "https://dj-react-todotaskapp-backend.herokuapp.com/tasks/";
 
   let groupsData = ConnectApi(GROUP_API_URL, changeHandler);
   let tasksData = ConnectApi(TASK_API_URL, changeHandler);
