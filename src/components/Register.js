@@ -18,7 +18,7 @@ const initialValues = {
 };
 
 const Register = () => {
-  const API_URL = 'https://dj-react-todotaskapp-backend.herokuapp.com/users/register/'
+  const API_URL = 'https://dj-react-todotaskapp-backend.herokuapp.com/users/register'
 
   const SignUp = async (...args) => {
     try {
