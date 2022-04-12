@@ -7,7 +7,7 @@ import DoneIcon from "@mui/icons-material/Done";
 
 const DoneTasks = ({ group, tasksData, UpdateAppTodo, SetCatcherHandler }) => {
   return tasksData[0].data?.filter((task) => task.task_group === group.name).some((item) => item.is_completed) ? (
-    <Box component="form" onSubmit={(e) => UpdateAppTodo(e)} sx={{ m: 4, p: 2, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)" }}>
+    <Box component="form" onSubmit={(e) => UpdateAppTodo(e)} sx={{ m: 4, p: 2, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)", "maxWidth": "30vw" }}>
       <Box sx={{ display: "flex" }}>
         <Typography sx={{ color: "red", flex: 1, fontSize: "1.5rem", textAlign: "center" }}>
           <code>{`──── <${group?.name}/DoneTasks> ────`}</code>

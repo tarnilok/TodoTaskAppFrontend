@@ -179,8 +179,8 @@ const Main = () => {
             //   Please(group);
             // }
             return (
-              <Box key={group?.id} sx={{ display: "flex", width: "100%", justifyContent: "space-between", "@media(max-width: 1200px)": { flexDirection: "column" } }}>
-                <Box component="form" onSubmit={(e) => UpdateAppTodo(e)} sx={{ m: 4, p: 1, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)", height: "0" }}>
+              <Box key={group?.id} sx={{ display: "flex", width: "100%", justifyContent: "space-between", "@media(maxWidth: 1600px)": { flexDirection: "column" } }}>
+                <Box component="form" onSubmit={(e) => UpdateAppTodo(e)} sx={{ m: 4, p: 1, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)", height: "0", "maxWidth": "60vw" }}>
                   <Box sx={{ display: "flex", m: 0, p: 0 }}>
                     <Button align="right" onClick={(e) => HandleGroupDelete(e, group?.id)}>
                       <DeleteIcon />
