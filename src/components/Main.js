@@ -17,7 +17,7 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import SaveIcon from "@mui/icons-material/Save";
 import InputLabel from "@mui/material/InputLabel";
 import { successToastify, errorToastify } from "../toastify";
-import { ConnectApi, CrudApi} from "../api/ConnectApi";
+import { ConnectApi, CrudApi } from "../api/ConnectApi";
 import { AuthContext } from "../AuthContext";
 import TableTitle from "./TableTitle";
 import DoneTasks from "./DoneTasks";
@@ -43,34 +43,34 @@ const Main = () => {
   let usersData = ConnectApi(USER_API_URL);
   // console.log(usersData)
 
-//   const Please = async (group) => {
-//     // useEffect(() => {
-//     // const abc = async () => {
-//     const list = group.order.split("/");
-//     let type;
-//     list[1] === "asc" ? (type = list[0]) : (type = "-" + list[0]);
-//     const TASK_API_URL_SORT = "http://127.0.0.1:8000/tasks/" + `?task_group=${group.id}&ordering=${type}`;
-//     try {
-//       let datas = await axios.get(TASK_API_URL_SORT);
-//       // console.log('jfdklşa', datas)
-// //       data?.map(i => {
-// // i?.data?.map(j => {
-// //   if(j.task_group !== group.name) data.push(datas)
-// //       })
-// //     })
-//       data.push(datas)
-//       // data[0] = Array.from(new Set(data[0]))
-//       // data[0]?.data?.map(i => {
-//       //   if(i?.task_group !== group?.name) data[0] = datas
-//       // })
-//       // console.log(data)
-//     } catch (error) {
-//       console.log(error);
-//     }
-//     // };
-//     // abc();
-//     // }, []);
-//   };
+  //   const Please = async (group) => {
+  //     // useEffect(() => {
+  //     // const abc = async () => {
+  //     const list = group.order.split("/");
+  //     let type;
+  //     list[1] === "asc" ? (type = list[0]) : (type = "-" + list[0]);
+  //     const TASK_API_URL_SORT = "http://127.0.0.1:8000/tasks/" + `?task_group=${group.id}&ordering=${type}`;
+  //     try {
+  //       let datas = await axios.get(TASK_API_URL_SORT);
+  //       // console.log('jfdklşa', datas)
+  // //       data?.map(i => {
+  // // i?.data?.map(j => {
+  // //   if(j.task_group !== group.name) data.push(datas)
+  // //       })
+  // //     })
+  //       data.push(datas)
+  //       // data[0] = Array.from(new Set(data[0]))
+  //       // data[0]?.data?.map(i => {
+  //       //   if(i?.task_group !== group?.name) data[0] = datas
+  //       // })
+  //       // console.log(data)
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //     // };
+  //     // abc();
+  //     // }, []);
+  //   };
 
   const SetCatcherHandler = (e, id) => {
     const { checked, name, value } = e.target;
@@ -156,7 +156,7 @@ const Main = () => {
   const HandleAddGroup = (e) => {
     e.preventDefault();
     const new_group_list = { name: e.target.new_group.value };
-    e.target.new_group.value = ""
+    e.target.new_group.value = "";
     try {
       CrudApi(GROUP_API_URL, new_group_list, currentUser.data.key, "post", catcher);
       successToastify("New group list added successfully");
@@ -167,7 +167,16 @@ const Main = () => {
   };
 
   return (
-    <Box sx={{ width: "100%", minHeight: "93.4vh", position: "absolute", display: "flex", flexDirection: "column", alignItems: "start", backgroundImage: 'url("https://picsum.photos/1600/900")', backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
+    <Box sx={{ width: "100%", minHeight: "93.4vh", position: "absolute", top: "64px", display: "flex", flexDirection: "column", alignItems: "start", backgroundImage: 'url("https://picsum.photos/1600/900")', backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center" }}>
+      <Box component="form" onSubmit={HandleAddGroup} sx={{ marginY: 4,marginX: "auto" ,p: 1, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)", maxWidth: "340px" }}>
+        <Box component={Paper} p={1}>
+          <TextField size="small" name="new_group" placeholder="Add New Group List" />
+          <Button type="submit" align="right" size="large" sx={{ marginLeft: 1 }}>
+            <SaveIcon />
+            SAVE
+          </Button>
+        </Box>
+      </Box>
       {currentUser ? (
         loading ? (
           <Stack sx={{ display: "flex", justifyContent: "center", mt: "50px", width: "100%" }} direction="row">
@@ -175,12 +184,9 @@ const Main = () => {
           </Stack>
         ) : (
           groupsData[0].data?.map((group) => {
-            // {
-            //   Please(group);
-            // }
             return (
               <Box key={group?.id} sx={{ display: "flex", width: "100%", justifyContent: "space-between", "@media(maxWidth: 1600px)": { flexDirection: "column" } }}>
-                <Box component="form" onSubmit={(e) => UpdateAppTodo(e)} sx={{ m: 4, p: 1, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)", height: "0", "maxWidth": "60vw" }}>
+                <Box component="form" onSubmit={(e) => UpdateAppTodo(e)} sx={{ m: 4, p: 1, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)", height: "0", maxWidth: "60vw" }}>
                   <Box sx={{ display: "flex", m: 0, p: 0 }}>
                     <Button align="right" onClick={(e) => HandleGroupDelete(e, group?.id)}>
                       <DeleteIcon />
@@ -235,13 +241,13 @@ const Main = () => {
                                   </FormControl>
                                 </TableCell>
                                 <TableCell sx={{ m: 0, p: 1 }}>
-                                  <TextField defaultValue={task.title} size="small" multiline name="title" onChange={(e) => SetCatcherHandler(e, task.id)} variant="standard" sx={{ width: "130px", m:1 }} />
+                                  <TextField defaultValue={task.title} size="small" multiline name="title" onChange={(e) => SetCatcherHandler(e, task.id)} variant="standard" sx={{ width: "130px", m: 1 }} />
                                 </TableCell>
                                 <TableCell align="left" sx={{ m: 0, p: 1 }}>
                                   <TextField defaultValue={task.description} multiline name="description" onChange={(e) => SetCatcherHandler(e, task.id)} size="small" variant="standard" sx={{ width: "175px", m: 1 }} />
                                 </TableCell>
-                                <TableCell align="left" sx={{ m: 0, p: 1}}>
-                                  <FormControl variant="standard" sx={{ m: 1 , width: "90px" }} size="small">
+                                <TableCell align="left" sx={{ m: 0, p: 1 }}>
+                                  <FormControl variant="standard" sx={{ m: 1, width: "90px" }} size="small">
                                     <Select value={task?.user ?? ""} name="user" onChange={(e) => SetCatcherHandler(e, task.id)}>
                                       {usersData[0].data?.map((user) => {
                                         return (
@@ -293,15 +299,6 @@ const Main = () => {
           })
         )
       ) : null}
-      <Box component="form" onSubmit={HandleAddGroup} sx={{ m: 4, p: 1, backgroundImage: "linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%)", maxWidth: "340px" }}>
-        <Box component={Paper} p={1}>
-          <TextField size="small" name="new_group" placeholder="Add New Group List" />
-          <Button type="submit" align="right" size="large" sx={{ marginLeft: 1 }}>
-            <SaveIcon />
-            SAVE
-          </Button>
-        </Box>
-      </Box>
     </Box>
   );
 };

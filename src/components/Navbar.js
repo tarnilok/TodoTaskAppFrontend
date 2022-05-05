@@ -35,7 +35,7 @@ const Navbar = () => {
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ opacity: 0.3 }}>
+      <AppBar position="fixed" sx={{ backgroundImage: "linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%)" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ToDoApp
