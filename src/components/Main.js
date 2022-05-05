@@ -1,4 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
+/* eslint-disable array-callback-return */
+import React, { useContext, useState } from "react";
 import { Box, Button, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
 import { Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -21,15 +22,12 @@ import { ConnectApi, CrudApi } from "../api/ConnectApi";
 import { AuthContext } from "../AuthContext";
 import TableTitle from "./TableTitle";
 import DoneTasks from "./DoneTasks";
-// import axios from "axios";
 
 const Main = () => {
   const { loading, currentUser } = useContext(AuthContext);
   const [catcher, setCatcher] = useState([]);
   const [changeHandler, setChangeHandler] = useState(false);
   const [order, setOrder] = useState(false);
-  const [data, setData] = useState([]);
-  // console.log(data);
 
   const priorityList = ["high priority", "medium priority", "low priority", "no priority"];
   const sortTitles = ["title/asc", "title/desc", "user/asc", "user/desc", "priority/asc", "priority/desc", "due_date/asc", "due_date/desc"];
@@ -79,12 +77,12 @@ const Main = () => {
 
     name === "due_date" ? (list[0][`${name}`] = value) : (list[0][`${name}`] = checked ?? value);
     if (name === "user") {
-      usersData[0].data.map((user) => {
+      usersData[0].data.forEach(user => {
         if (user.username === value) list[0].user_id = user.id;
       });
     }
     if (name === "task_group") {
-      groupsData[0].data.map((group) => {
+      groupsData[0].data.for((group) => {
         if (group.name === value) list[0].task_group_id = group.id;
       });
     }
@@ -224,69 +222,69 @@ const Main = () => {
                       <TableTitle tasksData={tasksData} order={order} setOrder={setOrder} group={group} />
                       <TableBody>
                         {tasksData[0]?.data?.map((task) => {
-                          if (task.is_completed === false && task.task_group === group.name) {
-                            return (
-                              <TableRow key={task.id}>
-                                <TableCell sx={{ m: 0, p: 1 }}>
-                                  <FormControl variant="standard" sx={{ m: 1, width: "130px" }} size="small">
-                                    <Select defaultValue={group?.name} name="task_group" onChange={(e) => SetCatcherHandler(e, task.id)}>
-                                      {groupsData[0].data.map((grp, index) => {
-                                        return (
-                                          <MenuItem key={index} value={grp?.name}>
-                                            {grp?.name}
-                                          </MenuItem>
-                                        );
-                                      })}
-                                    </Select>
-                                  </FormControl>
-                                </TableCell>
-                                <TableCell sx={{ m: 0, p: 1 }}>
-                                  <TextField defaultValue={task.title} size="small" multiline name="title" onChange={(e) => SetCatcherHandler(e, task.id)} variant="standard" sx={{ width: "130px", m: 1 }} />
-                                </TableCell>
-                                <TableCell align="left" sx={{ m: 0, p: 1 }}>
-                                  <TextField defaultValue={task.description} multiline name="description" onChange={(e) => SetCatcherHandler(e, task.id)} size="small" variant="standard" sx={{ width: "175px", m: 1 }} />
-                                </TableCell>
-                                <TableCell align="left" sx={{ m: 0, p: 1 }}>
-                                  <FormControl variant="standard" sx={{ m: 1, width: "90px" }} size="small">
-                                    <Select value={task?.user ?? ""} name="user" onChange={(e) => SetCatcherHandler(e, task.id)}>
-                                      {usersData[0].data?.map((user) => {
-                                        return (
-                                          <MenuItem key={user?.id} value={user.username}>
-                                            {user.username}
-                                          </MenuItem>
-                                        );
-                                      })}
-                                    </Select>
-                                  </FormControl>
-                                </TableCell>
-                                <TableCell align="center" sx={{ m: 0, p: 1 }}>
-                                  <FormControl variant="standard" sx={{ mr: 1, width: "130px" }} size="small">
-                                    <Select defaultValue={task.priority} name="priority" onChange={(e) => SetCatcherHandler(e, task.id)} sx={{ mr: 2 }}>
-                                      {priorityList.map((item, index) => {
-                                        return (
-                                          <MenuItem key={index} value={item}>
-                                            {item}
-                                          </MenuItem>
-                                        );
-                                      })}
-                                    </Select>
-                                  </FormControl>
-                                </TableCell>
-                                <TableCell align="center" sx={{ m: 0, p: 1 }}>
-                                  <input type="date" style={{ height: "35px", fontSize: "16px", textAlign: "center", width: "141px", borderWidth: "0 0 1px", outline: 0 }} name="due_date" defaultValue={task.due_date} onChange={(e) => SetCatcherHandler(e, task.id)} />
-                                </TableCell>
-                                <TableCell align="center" sx={{ m: 0, p: 0 }}>
-                                  <Checkbox name="is_completed" sx={{ textAlign: "center" }} checked={task.is_completed ? true : false} onChange={(e) => SetCatcherHandler(e, task.id)} />
-                                </TableCell>
-                                <TableCell align="center" sx={{ m: 0, p: 0 }}>
-                                  <IconButton edge="start" onClick={(e) => HandleDelete(e, task.id)}>
-                                    <ClearIcon sx={{ color: "#1976D2" }} />
-                                  </IconButton>
-                                </TableCell>
-                              </TableRow>
-                            );
-                          }
-                        })}
+                            if (task.is_completed === false && task.task_group === group.name) {
+                              return (
+                                <TableRow key={task.id}>
+                                  <TableCell sx={{ m: 0, p: 1 }}>
+                                    <FormControl variant="standard" sx={{ m: 1, width: "130px" }} size="small">
+                                      <Select defaultValue={group?.name} name="task_group" onChange={(e) => SetCatcherHandler(e, task.id)}>
+                                        {groupsData[0].data.map((grp, index) => {
+                                          return (
+                                            <MenuItem key={index} value={grp?.name}>
+                                              {grp?.name}
+                                            </MenuItem>
+                                          );
+                                        })}
+                                      </Select>
+                                    </FormControl>
+                                  </TableCell>
+                                  <TableCell sx={{ m: 0, p: 1 }}>
+                                    <TextField defaultValue={task.title} size="small" multiline name="title" onChange={(e) => SetCatcherHandler(e, task.id)} variant="standard" sx={{ width: "130px", m: 1 }} />
+                                  </TableCell>
+                                  <TableCell align="left" sx={{ m: 0, p: 1 }}>
+                                    <TextField defaultValue={task.description} multiline name="description" onChange={(e) => SetCatcherHandler(e, task.id)} size="small" variant="standard" sx={{ width: "175px", m: 1 }} />
+                                  </TableCell>
+                                  <TableCell align="left" sx={{ m: 0, p: 1 }}>
+                                    <FormControl variant="standard" sx={{ m: 1, width: "90px" }} size="small">
+                                      <Select value={task?.user ?? ""} name="user" onChange={(e) => SetCatcherHandler(e, task.id)}>
+                                        {usersData[0].data?.map((user) => {
+                                          return (
+                                            <MenuItem key={user?.id} value={user.username}>
+                                              {user.username}
+                                            </MenuItem>
+                                          );
+                                        })}
+                                      </Select>
+                                    </FormControl>
+                                  </TableCell>
+                                  <TableCell align="center" sx={{ m: 0, p: 1 }}>
+                                    <FormControl variant="standard" sx={{ mr: 1, width: "130px" }} size="small">
+                                      <Select defaultValue={task.priority} name="priority" onChange={(e) => SetCatcherHandler(e, task.id)} sx={{ mr: 2 }}>
+                                        {priorityList.map((item, index) => {
+                                          return (
+                                            <MenuItem key={index} value={item}>
+                                              {item}
+                                            </MenuItem>
+                                          );
+                                        })}
+                                      </Select>
+                                    </FormControl>
+                                  </TableCell>
+                                  <TableCell align="center" sx={{ m: 0, p: 1 }}>
+                                    <input type="date" style={{ height: "35px", fontSize: "16px", textAlign: "center", width: "141px", borderWidth: "0 0 1px", outline: 0 }} name="due_date" defaultValue={task.due_date} onChange={(e) => SetCatcherHandler(e, task.id)} />
+                                  </TableCell>
+                                  <TableCell align="center" sx={{ m: 0, p: 0 }}>
+                                    <Checkbox name="is_completed" sx={{ textAlign: "center" }} checked={task.is_completed ? true : false} onChange={(e) => SetCatcherHandler(e, task.id)} />
+                                  </TableCell>
+                                  <TableCell align="center" sx={{ m: 0, p: 0 }}>
+                                    <IconButton edge="start" onClick={(e) => HandleDelete(e, task.id)}>
+                                      <ClearIcon sx={{ color: "#1976D2" }} />
+                                    </IconButton>
+                                  </TableCell>
+                                </TableRow>
+                              );
+                            }
+                          })}
                       </TableBody>
                     </Table>
                   </TableContainer>
